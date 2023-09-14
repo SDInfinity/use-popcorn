@@ -15,8 +15,9 @@
   font-size: 1.8rem;
   border-radius: 0.7rem;
   max-width: 100%;
+  text-align: center;
   transition: all 0.3s;
-  color: var(--color-text);
+  color: #fff;
   background-color: var(--color-primary-light);
 }
 
