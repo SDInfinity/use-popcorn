@@ -1,21 +1,15 @@
 import { useState } from "react";
-import { tempMovieData } from "../../data";
 import Movie from "../Movie";
 import "./movieList.css";
+import ToggleButton from "../ToggleButton";
 
-const MovieList = () => {
-  const [movies, setMovies] = useState(tempMovieData);
-  const [isOpen1, setIsOpen1] = useState(true);
+const MovieList = ({ movies }) => {
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <div className="box">
-      <button
-        className="btn-toggle"
-        onClick={() => setIsOpen1((open) => !open)}
-      >
-        {isOpen1 ? "–" : "+"}
-      </button>
-      {isOpen1 && (
+      <ToggleButton isOpen={isOpen} setIsOpen={setIsOpen} />
+      {isOpen && (
         <ul className="list">
           {movies?.map((movie, index) => (
             <Movie movie={movie} key={index} />

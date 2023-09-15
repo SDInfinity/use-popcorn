@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ movies }) => {
   const [query, setQuery] = useState("");
 
   return (
@@ -21,7 +21,7 @@ const Navbar = () => {
         />
 
         <p className="num-results">
-          Found <strong>3</strong> results
+          Found <strong>{movies.length}</strong> results
         </p>
       </nav>
     </header>
