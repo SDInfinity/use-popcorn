@@ -1,6 +1,7 @@
 import star from "../assets/star.svg";
 import emptyStar from "../assets/empty-star.svg";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const containerStyle = {
   display: "flex",
@@ -69,6 +70,10 @@ const StarRating = ({
       </p>
     </div>
   );
+};
+
+StarRating.propTypes = {
+  maxRating: PropTypes.number,
 };
 
 export default StarRating;
