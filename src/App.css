@@ -283,7 +283,43 @@
     flex-direction: column;
   }
 
-  .list.list.list-movies li {
+  .list.list-movies li {
     font-size: 1.8rem;
+  }
+
+  .list li {
+    grid-template-columns: 1fr 300px;
+    padding: 2rem 4rem;
+  }
+
+  .list h3 {
+    font-size: 2.2rem;
+  }
+
+  .list div {
+    align-items: flex-start;
+
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 2rem 1rem;
+  }
+
+  .list div {
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .list h3 {
+    font-size: 3.2rem;
   }
 }
