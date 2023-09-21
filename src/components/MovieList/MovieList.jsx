@@ -10,7 +10,7 @@ const MovieList = ({ movies }) => {
     <div className="box">
       <ToggleButton isOpen={isOpen} setIsOpen={setIsOpen} />
       {isOpen && (
-        <ul className="list">
+        <ul className="list list-movies">
           {movies?.map((movie, index) => (
             <Movie movie={movie} key={index} />
           ))}

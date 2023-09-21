@@ -2,8 +2,8 @@ const WatchedMovie = ({ movie }) => {
   return (
     <li key={movie.imdbID}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
       <div>
+        <h3>{movie.Title}</h3>
         <p>
           <span>⭐️</span>
           <span>{movie.imdbRating}</span>
