@@ -21,5 +21,4 @@ const ListMovie = ({ movie }) => {
     </li>
   );
 };
-
 export default ListMovie;

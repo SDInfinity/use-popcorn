@@ -7,7 +7,7 @@ const MovieList = ({ movies }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="box">
+    <div className="box list-movies">
       <ToggleButton isOpen={isOpen} setIsOpen={setIsOpen} />
       {isOpen && (
         <ul className="list list-movies">
