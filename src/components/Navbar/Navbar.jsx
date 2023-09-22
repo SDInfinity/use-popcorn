@@ -1,9 +1,6 @@
-import { useState } from "react";
 import "./navbar.css";
 
-const Navbar = ({ movies }) => {
-  const [query, setQuery] = useState("");
-
+const Navbar = ({ movies, query, setQuery }) => {
   return (
     <header className="navbar">
       <nav className="nav-bar">

@@ -1,6 +1,6 @@
-const ListMovie = ({ movie }) => {
+const ListMovie = ({ movie, handleSelectMovieID }) => {
   return (
-    <li key={movie.imdbID}>
+    <li key={movie.imdbID} onClick={() => handleSelectMovieID(movie.imdbID)}>
       <img
         src={
           movie.Poster !== "N/A"
