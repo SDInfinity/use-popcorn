@@ -11,12 +11,12 @@ export default function App() {
 
   useEffect(() => {
     fetch(` http://www.omdbapi.com/?
-  i=tt3896198&apikey=${KEY}&s=interstellar`)
+  i=tt3896198&apikey=${KEY}&s=the batman`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        setMovies(data.Search);
+        setMovies(data.Search.slice(0, 6));
       });
   }, []);
 
