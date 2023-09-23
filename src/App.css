@@ -223,10 +223,13 @@
   margin-bottom: 0.8rem;
   font-weight: 600;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 2.4rem;
 }
 
 .btn-add {
+  width: 30%;
   background-color: var(--color-primary);
   color: var(--color-text);
   border: none;
@@ -314,6 +317,10 @@
     padding: 0.8rem;
   }
 
+  .btn-add {
+    width: 50%;
+  }
+
   .details img {
     width: 100%;
   }
@@ -365,6 +372,10 @@
 
   .plot {
     width: fit-content;
+  }
+
+  .btn-add {
+    width: 100%;
   }
 }
 

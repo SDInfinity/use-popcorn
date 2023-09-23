@@ -7,7 +7,6 @@ import {
   MovieDetail,
 } from "./components/index";
 import "./App.css";
-// import { tempWatchedData } from "./data";
 import { useState, useEffect } from "react";
 
 const KEY = "f19abece";
@@ -26,6 +25,10 @@ export default function App() {
 
   function handleCloseMovie() {
     setSelectedMovieId(null);
+  }
+
+  function handleWatchedMovie(movie) {
+    setWatched([...watched, movie]);
   }
 
   async function fetchMovies() {
@@ -79,6 +82,8 @@ export default function App() {
           <MovieDetail
             selectedMovieId={selectedMovieId}
             handleCloseMovie={handleCloseMovie}
+            handleWatchedMovie={handleWatchedMovie}
+            watched={watched}
           />
         ) : (
           <MoviesWatched watched={watched} setWatched={setWatched} />

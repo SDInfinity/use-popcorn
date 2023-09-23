@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 const containerStyle = {
   display: "flex",
   alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
   gap: "16px",
 };
 
@@ -19,7 +21,6 @@ const StarRating = ({
   maxRating = 5,
   color = "#fcc419",
   size = 48,
-  className = "",
   messages = [],
   defaultRating = 0,
   onSetRating = 0,
@@ -29,18 +30,17 @@ const StarRating = ({
 
   const textStyle = {
     lineHeight: "1",
-    margin: 0,
     color,
     fontSize: `${size / 1.5}px`,
   };
 
   function handleRating(rating) {
     setRating(rating);
-    setTempRating(rating);
+    onSetRating(rating);
   }
 
   return (
-    <div style={containerStyle} className={className}>
+    <div style={containerStyle}>
       <div style={starContainerStyle} className="star-container">
         {Array.from({ length: maxRating }, (_, index) => (
           <img
