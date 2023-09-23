@@ -95,7 +95,7 @@
 }
 
 .list img {
-  width: 150px;
+  width: 75%;
 }
 
 .list h3 {
@@ -181,6 +181,7 @@
 
 .details header {
   display: flex;
+  gap: 20px;
 }
 
 .details section {
@@ -218,11 +219,10 @@
 .rating {
   background-color: var(--color-background-100);
   border-radius: 0.9rem;
-  padding: 2rem 2.4rem;
+  padding: 2rem 2rem;
   margin-bottom: 0.8rem;
   font-weight: 600;
   display: flex;
-  flex-direction: column;
   gap: 2.4rem;
 }
 
@@ -253,15 +253,21 @@
 }
 
 .btn-back {
+  background-color: var(--color-background-900);
+  height: fit-content;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn-back button {
   color: white;
   border: none;
   background: none;
   font-family: sans-serif;
-  font-size: 2rem;
-  font-weight: bolder;
+  font-size: 1.8rem;
+  font-weight: bold;
   cursor: pointer;
-  z-index: 999;
-  text-align: center;
 }
 
 @media screen and (max-width: 1500px) {
@@ -299,6 +305,38 @@
   }
 }
 
+@media screen and (max-width: 800px) {
+  .details header {
+    flex-direction: column;
+  }
+  .btn-back {
+    width: fit-content;
+    padding: 0.8rem;
+  }
+
+  .details img {
+    width: 100%;
+  }
+
+  .details section {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    font-size: 1.55rem;
+  }
+
+  .star {
+    height: 15px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .plot {
+    width: 50%;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .list li {
     display: flex;
@@ -317,5 +355,26 @@
 
   .list h3 {
     font-size: 3.2rem;
+  }
+
+  .star {
+    height: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .plot {
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .star-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .star {
+    height: 10px;
   }
 }

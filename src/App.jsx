@@ -32,8 +32,9 @@ export default function App() {
     try {
       setIsLoading(true);
       setError(""); //reset error
-      const response = await fetch(` http://www.omdbapi.com/?
-      i=tt3896198&apikey=${KEY}&s=${query}`);
+      const response = await fetch(
+        ` http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+      );
 
       if (!response.ok) throw new Error("Something went wrong");
 
@@ -48,6 +49,8 @@ export default function App() {
     } finally {
       setIsLoading(false);
     }
+
+    console.log(query);
 
     if (query.length < 2) {
       setMovies([]);

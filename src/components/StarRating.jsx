@@ -36,20 +36,20 @@ const StarRating = ({
 
   function handleRating(rating) {
     setRating(rating);
-    onSetRating(rating);
+    setTempRating(rating);
   }
 
   return (
     <div style={containerStyle} className={className}>
-      <div style={starContainerStyle}>
+      <div style={starContainerStyle} className="star-container">
         {Array.from({ length: maxRating }, (_, index) => (
           <img
             src={
               tempRating >= index + 1 || rating >= index + 1 ? star : emptyStar
             }
             key={index}
-            width={30}
-            height={30}
+            width={size}
+            height={size}
             style={{
               cursor: "pointer",
             }}
@@ -60,6 +60,7 @@ const StarRating = ({
             onMouseLeave={() => {
               setTempRating(0);
             }}
+            className="star"
           />
         ))}
       </div>
