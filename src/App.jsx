@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 const KEY = "f19abece";
 
 export default function App() {
-  const [query, setQuery] = useState("the batman");
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [watched, setWatched] = useState([]);
@@ -31,12 +31,19 @@ export default function App() {
     setWatched([...watched, movie]);
   }
 
+  function handleDeleteWatchedMovie(id) {
+    setWatched(watched.filter((movie) => movie.imdbID !== id));
+  }
+
+  const controller = new AbortController();
+
   async function fetchMovies() {
     try {
       setIsLoading(true);
       setError(""); //reset error
       const response = await fetch(
-        ` http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+        ` http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+        { signal: controller.signal }
       );
 
       if (!response.ok) throw new Error("Something went wrong");
@@ -45,39 +52,58 @@ export default function App() {
 
       if (data.Response === "False") throw new Error("Movie not Found");
 
-      setMovies(data.Search.slice(0, 6));
+      setMovies(data.Search);
+      setError(""); //reset error
     } catch (error) {
       console.error(error.message);
-      setError(error.message);
+      if (error.name !== "AbortError") {
+        setError(error.message);
+      }
     } finally {
       setIsLoading(false);
     }
 
     console.log(query);
-
-    if (query.length < 2) {
-      setMovies([]);
-      setError("");
-      return;
-    }
   }
 
   useEffect(() => {
+    document.addEventListener("keydown", (event) => {
+      if (event.code === "Escape") {
+        handleCloseMovie();
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     fetchMovies();
+
+    //cleaup data fetching
+    return () => controller.abort();
   }, [query]);
 
   return (
     <>
       <Navbar movies={movies} query={query} setQuery={setQuery} />
       <main className="main">
-        {isLoading && <Loader />}
-        {!isLoading && !error && (
-          <MovieList
-            movies={movies}
-            handleSelectMovieID={handleSelectMovieID}
-          />
+        {query ? (
+          <>
+            {isLoading && <Loader />}
+            {!isLoading && !error && (
+              <MovieList
+                movies={movies}
+                handleSelectMovieID={handleSelectMovieID}
+              />
+            )}
+            {error && <ErrorMessage message={error} />}
+          </>
+        ) : (
+          <>
+            <div className="box initial-message">
+              <p>Start for searching for movies</p>
+            </div>
+          </>
         )}
-        {error && <ErrorMessage message={error} />}
+
         {selectedMovieId ? (
           <MovieDetail
             selectedMovieId={selectedMovieId}
@@ -86,7 +112,10 @@ export default function App() {
             watched={watched}
           />
         ) : (
-          <MoviesWatched watched={watched} setWatched={setWatched} />
+          <MoviesWatched
+            watched={watched}
+            handleDeleteWatchedMovie={handleDeleteWatchedMovie}
+          />
         )}
       </main>
     </>

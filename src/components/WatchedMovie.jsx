@@ -5,6 +5,7 @@ const WatchedMovie = ({
   imdbRating,
   userRating,
   runtime,
+  handleDeleteWatchedMovie,
 }) => {
   return (
     <li key={imdbID}>
@@ -23,6 +24,12 @@ const WatchedMovie = ({
           <span>⏳</span>
           <span>{runtime} min</span>
         </p>
+        <button
+          className="btn-delete"
+          onClick={() => handleDeleteWatchedMovie(imdbID)}
+        >
+          X
+        </button>
       </div>
     </li>
   );

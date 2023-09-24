@@ -18,7 +18,16 @@ const Navbar = ({ movies, query, setQuery }) => {
         />
 
         <p className="num-results">
-          Found <strong>{movies.length}</strong> results
+          {" "}
+          {!query ? (
+            `Movie results`
+          ) : (
+            <strong>
+              {movies.length > 1
+                ? `Found ${movies.length} movies.`
+                : "Found 1 movie."}{" "}
+            </strong>
+          )}
         </p>
       </nav>
     </header>

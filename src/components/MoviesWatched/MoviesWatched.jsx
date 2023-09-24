@@ -4,7 +4,7 @@ import WatchedMovieSummary from "../WatchedMovieSummary";
 import ToggleButton from "../ToggleButton";
 import "./moviesWatched.css";
 
-const MoviesWatched = ({ watched }) => {
+const MoviesWatched = ({ watched, handleDeleteWatchedMovie }) => {
   const average = (arr) =>
     arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -13,9 +13,11 @@ const MoviesWatched = ({ watched }) => {
   const avgImdbRating = average(
     watched.map((movie) => movie.imdbRating)
   ).toFixed(2);
+
   const avgUserRating = average(
     watched.map((movie) => movie.userRating)
   ).toFixed(2);
+
   const avgRuntime = average(watched.map((movie) => movie.runtime)).toFixed(2);
 
   return (
@@ -29,9 +31,13 @@ const MoviesWatched = ({ watched }) => {
             avgRuntime={avgRuntime}
             avgUserRating={avgUserRating}
           />
-          <ul className="list">
+          <ul className="list watched">
             {watched.map((movie) => (
-              <WatchedMovie {...movie} key={movie.imdbID} />
+              <WatchedMovie
+                {...movie}
+                key={movie.imdbID}
+                handleDeleteWatchedMovie={handleDeleteWatchedMovie}
+              />
             ))}
           </ul>
         </>

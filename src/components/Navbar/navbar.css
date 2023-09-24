@@ -1,7 +1,7 @@
 .nav-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 18px;
   padding: 2.5rem 3.2rem;
   background-color: var(--color-primary);
@@ -15,15 +15,15 @@
   font-size: 1.8rem;
   border-radius: 0.7rem;
   max-width: 100%;
-  text-align: center;
   transition: all 0.3s;
   color: #fff;
   background-color: var(--color-primary-light);
 }
 
 .search::placeholder {
-  text-align: center;
-  color: #fff;
+  opacity: 0.5;
+  color: white;
+  font-size: 1.75rem;
 }
 
 .search:focus {
@@ -35,6 +35,12 @@
 .num-results {
   justify-self: end;
   font-size: 1.8rem;
+}
+
+@media screen and (max-width: 900px) {
+  .search {
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 780px) {

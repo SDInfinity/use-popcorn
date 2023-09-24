@@ -3,16 +3,10 @@ import emptyStar from "../assets/empty-star.svg";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const containerStyle = {
+const starContainerStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  flexDirection: "column",
-  gap: "16px",
-};
-
-const starContainerStyle = {
-  display: "flex",
   gap: "10px",
   margin: "10px",
 };
@@ -40,7 +34,7 @@ const StarRating = ({
   }
 
   return (
-    <div style={containerStyle}>
+    <div className="container-style">
       <div style={starContainerStyle} className="star-container">
         {Array.from({ length: maxRating }, (_, index) => (
           <img

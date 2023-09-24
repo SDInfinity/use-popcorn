@@ -29,6 +29,10 @@ const MovieDetail = ({
     .map((movie) => movie.imdbID)
     .includes(selectedMovieId);
 
+  const rating = watched.find(
+    (movie) => selectedMovieId === movie.imdbID
+  )?.userRating;
+
   async function getMovie() {
     setIsLoading(true);
     const response = await fetch(
@@ -50,12 +54,21 @@ const MovieDetail = ({
     };
 
     handleWatchedMovie(newMovie);
+
     handleCloseMovie();
   }
 
   useEffect(() => {
     getMovie();
   }, [selectedMovieId]);
+
+  useEffect(() => {
+    if (!title) {
+      return;
+    }
+    document.title = `Movie | ${title}`;
+    return () => (document.title = "usePopcorn 🍿");
+  }, [title]);
 
   return (
     <div className="box">
@@ -103,7 +116,9 @@ const MovieDetail = ({
                     )}
                   </>
                 ) : (
-                  <p>You already rated this movie.</p>
+                  <p>
+                    You already rated this movie {rating} <span>⭐</span>
+                  </p>
                 )}
               </div>
 
