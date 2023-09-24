@@ -55,9 +55,9 @@ export default function App() {
       setMovies(data.Search);
       setError(""); //reset error
     } catch (error) {
-      console.error(error.message);
       if (error.name !== "AbortError") {
         setError(error.message);
+        console.log(error.message);
       }
     } finally {
       setIsLoading(false);
