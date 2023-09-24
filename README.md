@@ -1,6 +1,9 @@
 # usePopcorn - Movie App in React
 
-![usePopcorn Preview](screenshot.png)
+## Preview of Live Site
+![Screenshot (57)](https://github.com/SDInfinity/use-popcorn/assets/102734212/a003026e-c8b3-4de8-b38e-040278621bd0)
+
+
 
 usePopcorn is a movie app built with React that allows you to discover, rate, and track the movies you've watched. With a clean and intuitive interface, usePopcorn simplifies your movie-watching experience.
 
