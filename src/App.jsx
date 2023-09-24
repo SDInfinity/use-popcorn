@@ -62,15 +62,9 @@ export default function App() {
     } finally {
       setIsLoading(false);
     }
-  }
 
-  useEffect(() => {
-    document.addEventListener("keydown", (event) => {
-      if (event.code === "Escape") {
-        handleCloseMovie();
-      }
-    });
-  }, []);
+    handleCloseMovie();
+  }
 
   useEffect(() => {
     fetchMovies();
