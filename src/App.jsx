@@ -91,7 +91,7 @@ export default function App() {
         ) : (
           <>
             <div className="box initial-message">
-              <p>Start for searching for movies</p>
+              <p>Start searching for movies</p>
             </div>
           </>
         )}
