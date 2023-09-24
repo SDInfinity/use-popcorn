@@ -62,8 +62,6 @@ export default function App() {
     } finally {
       setIsLoading(false);
     }
-
-    console.log(query);
   }
 
   useEffect(() => {
