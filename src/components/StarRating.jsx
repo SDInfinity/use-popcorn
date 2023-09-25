@@ -4,6 +4,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 const starContainerStyle = {
+  maxWidth: "80%",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

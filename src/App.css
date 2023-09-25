@@ -270,10 +270,6 @@
     flex-direction: column;
   }
 
-  .container-style {
-    flex-direction: column;
-  }
-
   .list.list-movies li {
     font-size: 1.8rem;
   }
