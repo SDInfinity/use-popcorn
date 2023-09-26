@@ -15,7 +15,13 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
-  const [watched, setWatched] = useState([]);
+
+  //lazy evaluation
+  const [watched, setWatched] = useState(() => {
+    const storeValue = localStorage.getItem("watched");
+    return storeValue ? JSON.parse(storeValue) : [];
+  });
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -72,6 +78,12 @@ export default function App() {
     //cleaup data fetching
     return () => controller.abort();
   }, [query]);
+
+  // to retrieve watched movie data from local storage on initial mount
+
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify(watched));
+  }, [watched]);
 
   return (
     <>
