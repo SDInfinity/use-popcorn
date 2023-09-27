@@ -1,6 +1,29 @@
 import "./navbar.css";
+import { useRef, useEffect } from "react";
 
 const Navbar = ({ movies, query, setQuery }) => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    function callback(event) {
+      if (document.activeElement === inputRef.current) {
+        return;
+      }
+
+      if (event.code === "Enter") {
+        inputRef.current.focus();
+        setQuery("");
+      }
+    }
+
+    inputRef.current.focus();
+    document.addEventListener("keydown", callback);
+
+    return () => {
+      document.removeEventListener("keydown", callback);
+    };
+  }, [setQuery]);
+
   return (
     <header className="navbar">
       <nav className="nav-bar">
@@ -10,6 +33,7 @@ const Navbar = ({ movies, query, setQuery }) => {
         </div>
 
         <input
+          ref={inputRef}
           className="search search-bar"
           type="text"
           placeholder="Search movies..."
