@@ -7,23 +7,17 @@ import {
   MovieDetail,
 } from "./components/index";
 import "./App.css";
-import { useState, useEffect } from "react";
-
-const KEY = "f19abece";
+import { useState } from "react";
+import { useMovies } from "./hooks/useMovies";
+import { useLocaleStorage } from "./hooks/useLocaleStorage";
 
 export default function App() {
   const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
+  const { movies, isLoading, error } = useMovies(query, handleCloseMovie); //custom hook
   const [selectedMovieId, setSelectedMovieId] = useState(null);
 
   //lazy evaluation
-  const [watched, setWatched] = useState(() => {
-    const storeValue = localStorage.getItem("watched");
-    return storeValue ? JSON.parse(storeValue) : [];
-  });
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [watched, setWatched] = useLocaleStorage("watched");
 
   function handleSelectMovieID(id) {
     setSelectedMovieId(selectedMovieId === id ? null : id);
@@ -40,50 +34,6 @@ export default function App() {
   function handleDeleteWatchedMovie(id) {
     setWatched(watched.filter((movie) => movie.imdbID !== id));
   }
-
-  const controller = new AbortController();
-
-  async function fetchMovies() {
-    try {
-      setIsLoading(true);
-      setError(""); //reset error
-      const response = await fetch(
-        ` https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-        { signal: controller.signal }
-      );
-
-      if (!response.ok) throw new Error("Something went wrong");
-
-      const data = await response.json();
-
-      if (data.Response === "False") throw new Error("Movie not Found");
-
-      setMovies(data.Search);
-      setError(""); //reset error
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        setError(error.message);
-        console.log(error.message);
-      }
-    } finally {
-      setIsLoading(false);
-    }
-
-    handleCloseMovie();
-  }
-
-  useEffect(() => {
-    fetchMovies();
-
-    //cleaup data fetching
-    return () => controller.abort();
-  }, [query]);
-
-  // to retrieve watched movie data from local storage on initial mount
-
-  useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify(watched));
-  }, [watched]);
 
   return (
     <>
