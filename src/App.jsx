@@ -15,7 +15,6 @@ export default function App() {
   const [query, setQuery] = useState("");
   const { movies, isLoading, error } = useMovies(query, handleCloseMovie); //custom hook
   const [selectedMovieId, setSelectedMovieId] = useState(null);
-
   const [watched, setWatched] = useLocaleStorage("watched");
 
   function handleSelectMovieID(id) {
