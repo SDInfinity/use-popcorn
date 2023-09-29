@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import StarRating from "./StarRating";
 import Loader from "./Loader";
+import { useKey } from "../hooks/useKey";
 const KEY = "f19abece";
 
 const MovieDetail = ({
@@ -62,6 +63,9 @@ const MovieDetail = ({
     getMovie();
   }, [selectedMovieId]);
 
+  //custom hook
+  useKey("Escape", handleCloseMovie);
+
   useEffect(() => {
     if (!title) {
       return;
@@ -69,19 +73,6 @@ const MovieDetail = ({
     document.title = `Movie | ${title}`;
     return () => (document.title = "usePopcorn 🍿");
   }, [title]);
-
-  useEffect(() => {
-    function callback(event) {
-      if (event.code === "Escape") {
-        handleCloseMovie();
-      }
-    }
-    document.addEventListener("keydown", callback);
-
-    return () => {
-      document.removeEventListener("keydown", callback);
-    };
-  }, [handleCloseMovie]);
 
   return (
     <div className="box">

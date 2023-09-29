@@ -1,28 +1,23 @@
 import "./navbar.css";
 import { useRef, useEffect } from "react";
+import { useKey } from "../../hooks/useKey";
 
 const Navbar = ({ movies, query, setQuery }) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    function callback(event) {
-      if (document.activeElement === inputRef.current) {
-        return;
-      }
+    inputRef.current.focus();
+  }, []);
 
-      if (event.code === "Enter") {
-        inputRef.current.focus();
-        setQuery("");
-      }
+  //custom hook
+  useKey("Enter", function () {
+    if (document.activeElement === inputRef.current) {
+      return;
     }
 
     inputRef.current.focus();
-    document.addEventListener("keydown", callback);
-
-    return () => {
-      document.removeEventListener("keydown", callback);
-    };
-  }, [setQuery]);
+    setQuery("");
+  });
 
   return (
     <header className="navbar">
