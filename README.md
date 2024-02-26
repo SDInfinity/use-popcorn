@@ -1,7 +1,8 @@
 # usePopcorn - Movie App in React
 
 ## Preview of Live Site
-![Screenshot (57)](https://github.com/SDInfinity/use-popcorn/assets/102734212/a003026e-c8b3-4de8-b38e-040278621bd0)
+![Screenshot (122)](https://github.com/sougata-github/use-popcorn/assets/102734212/1d2f499f-9069-4363-8cf1-6e566f33e962)
+
 
 
 
